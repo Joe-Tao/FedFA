@@ -15,7 +15,7 @@ from client import *
 from utils.aggregator import *
 from utils.dispatchor import *
 from utils.optimizer import *
-from utils.clusteror import *
+# from utils.clusteror import *
 from utils.global_test import *
 from utils.local_test import *
 from utils.sampling import *

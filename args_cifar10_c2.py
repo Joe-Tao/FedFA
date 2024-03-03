@@ -8,7 +8,7 @@ def args_parser():
     
     # federated argumentss
     parser.add_argument('--E', type=int, default=5, help='number of rounds of local training')
-    parser.add_argument('--r', type=int, default=200, help='number of communication rounds')
+    parser.add_argument('--r', type=int, default=3, help='number of communication rounds')
     parser.add_argument('--K', type=int, default=100, help='number of total clients')
     parser.add_argument('--B', type=int, default=64, help='local batch size')#128
     parser.add_argument('--TB', type=int, default=1000, help="test batch size")
