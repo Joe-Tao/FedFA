@@ -7,7 +7,7 @@ from torch import nn
 from torch.utils.data import DataLoader, Dataset
 
 import utils.optimizer as op
-
+import utils.ckks as ckks
 
 #class client:
 def client_update(args, client_index, client_models, global_model, global_round, dataset_train, dict_users, loss_dict):  # update nn
@@ -138,7 +138,11 @@ def client_fedfa_cl(args, client_index, anchorloss_funcs, client_models, global_
 
         anchorloss_funcs[k], client_models[k], loss = op.fedfa_cl_optimizer(args, anchorloss_funcs[k], client_models[k], global_model, global_round, dataset_train, dict_users[k])
         loss_dict[k].extend(loss)
-    
+        
+        anchorloss_funcs[k] = ckks.EncryptionManager().encrypt(anchorloss_funcs[k])
+        client_models[k] = ckks.EncryptionManager().encrypt(client_models[k])
+
+
     index_nonselect = list(set(i for i in range(args.K)) - set(client_index))
     for j in index_nonselect:
         loss = [loss_dict[j][-1]]*args.E 

@@ -491,6 +491,9 @@ class Server:
                 dispatch(index, self.nn, self.nns)
             dispatch(index, self.anchorloss, self.cls)
 
+            # Encrypt global model
+            self.nn = ckks.EncryptionManager().encrypt(self.nn)
+
 
             #joint updating to obtain personalzied model based on updating global model
             self.cls, self.nns, self.loss_dict  = client_fedfa_cl(self.args,index, self.cls, self.nns, self.nn, t, self.dataset,  self.dict_users, self.loss_dict) 

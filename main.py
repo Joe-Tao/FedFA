@@ -255,4 +255,5 @@ def run_FedFA():
         train_loss_show(args, loss_dictfa, clients_indexfa)
 
 if __name__ == "__main__":
-    run_FedDyn()
+    # run_FedDyn()
+    run_FedFA()

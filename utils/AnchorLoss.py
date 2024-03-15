@@ -42,7 +42,7 @@ class AnchorLoss(nn.Module):
         :return: anchor loss 
         """
         # broadcast feature anchors for all inputs
-        centre = self.anchor.cuda().index_select(dim=0, index=_target.long())
+        centre = self.anchor.index_select(dim=0, index=_target.long())
         # compute the number of samples in each class
         counter = torch.histc(_target, bins=self.cls_num, min=0, max=self.cls_num-1)
         count = counter[_target.long()]
